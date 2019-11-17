@@ -1,0 +1,44 @@
+<h1>Eat Da Burger</h1>
+<img src="../burger-clipart-cute-11.jpg" alt="Cute Burger">
+
+<h2>Eat Some Burgers!</h2>
+
+<ul>
+    {{#each burgers}}
+    {{#unless this.eaten}}
+    <li>
+        {{this.name}}
+        <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
+            <input type="hidden" name="eaten" value="false">
+            <button type="submit">Eat da burger!</button>
+        </form>
+
+    </li>
+
+    {{/unless}}
+    {{/each}}
+</ul>
+
+<h2>Eaten Burgers!</h2>
+
+<ul>
+    {{#each burgers}}
+    {{#if this.eaten}}
+    <li>
+        {{this.name}}
+        <form action="cats/update/{{this.id}}?_method=PUT" method="POST">
+            <input type="hidden" name="eaten" value="true">
+            <button type="submit">Eat it again!!</button>
+        </form>
+    </li>
+
+    {{/if}}
+    {{/each}}
+</ul>
+
+
+<form action="/" method="POST">
+    <label>Add a new Burger you would like to eat:</label>
+	<textarea type="text" name="burger"></textarea>
+	<button type="submit">Submit</button>
+</form>
