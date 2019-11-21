@@ -1,21 +1,21 @@
 
 var express = require("express");
 var router = express.Router();
-var cat = require("../models/burger.js")
+var burger = require("../models/burger.js")
 
 router.get("/", function (req, res) {
     res.redirect("/burgers");
 });
 
 router.get("/burgers", function (req, res) {
-    cat.all(function (data) {
+    burger.all(function (data) {
         var hbsObject = { burgers: data }
         res.render("index" , hbsObject);
     });
 });
 
 router.post("/burgers/create", function (req, res){
-    cat.create(["name"], [req.body.name], function(){
+    burger.create(["name"], [req.body.name], function(){
         res.redirect("/burgers");
     });
 });
