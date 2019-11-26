@@ -1,5 +1,6 @@
 var express = require("express");
 var exphbs = require("express-handlebars");
+var methodOverride = require("method-override");
 var orm = require("./config/orm.js");
 
 var app = express();
@@ -13,6 +14,7 @@ app.use(express.static(process.cwd() + "public"));
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+app.use(methodOverride("_method"));
 
 var routes = require("./controllers/burgers_controller");
 app.use("/", routes);
